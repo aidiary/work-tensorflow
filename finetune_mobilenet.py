@@ -26,7 +26,7 @@ def load_and_preprocess_image(path):
 
 def load_dataset():
     data_root_orig = tf.keras.utils.get_file(origin='https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz',
-                                         fname='flower_photos', untar=True)
+                                             fname='flower_photos', untar=True)
     data_root = pathlib.Path(data_root_orig)
 
     # 画像ファイルパスのリストを取得
