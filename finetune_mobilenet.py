@@ -36,7 +36,6 @@ def load_dataset():
 
     # 画像ファイル数
     image_count = len(all_image_paths)
-    print(image_count)
 
     # ラベル名のリスト（ディレクトリ名）を取得
     label_names = sorted(item.name for item in data_root.glob('*/') if item.is_dir())
