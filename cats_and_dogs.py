@@ -2,13 +2,15 @@ from comet_ml import Experiment
 import os
 import random
 import pathlib
+import numpy as np
 import tensorflow as tf
+import tensorflow_addons as tfa
 from tensorflow.keras import Model
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 
 
 BATCH_SIZE = 32
-NUM_EPOCHS = 15
+NUM_EPOCHS = 30
 
 
 experiment = Experiment(project_name='tf2-cats-and-dogs',
@@ -22,6 +24,19 @@ def load_and_preprocess_image(path):
     image = tf.image.resize(image, [150, 150])
     image /= 255.0
     return image
+
+
+@tf.function
+def rotate_tf(image, label):
+    random_angles = tf.random.uniform(shape=(tf.shape(image)[0], ),
+                                      minval=-45 * np.pi / 180,
+                                      maxval=45 * np.pi / 180)
+    return tfa.image.rotate(image, random_angles), label
+
+
+@tf.function
+def flip_left_right(image, label):
+    return tf.image.random_flip_left_right(image), label
 
 
 def load_dataset():
@@ -55,6 +70,8 @@ def load_dataset():
     train_ds = train_ds.cache() \
         .shuffle(buffer_size=num_train_images) \
         .batch(BATCH_SIZE) \
+        .map(flip_left_right) \
+        .map(rotate_tf) \
         .prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
     valid_ds = valid_ds.cache() \
