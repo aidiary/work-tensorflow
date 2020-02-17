@@ -86,8 +86,6 @@ def main():
     criterion = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False)
     optimizer = tf.keras.optimizers.Adam()
 
-    experiment.set_model_graph(model)
-
     # metrics
     train_loss = tf.keras.metrics.Mean(name='train_loss')
     train_acc = tf.keras.metrics.SparseCategoricalAccuracy(name='train_accuracy')
