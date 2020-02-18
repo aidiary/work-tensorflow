@@ -132,3 +132,4 @@ dmypy.json
 .python_history
 
 notebooks/
+tensorflow_datasets/
