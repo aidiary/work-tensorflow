@@ -1,8 +1,7 @@
 from comet_ml import Experiment
-import tensorflow as tf
 import tensorflow_datasets as tfds
 from tensorflow.keras import Sequential
-from tensorflow.keras.layers import Embedding, Bidirectional, LSTM, Dense
+from tensorflow.keras.layers import Embedding, Bidirectional, LSTM, Dense, Dropout
 from tensorflow.keras.optimizers import Adam
 
 
@@ -34,8 +33,11 @@ def main():
 
     model = Sequential([
         Embedding(vocab_size, 64),
-        Bidirectional(LSTM(64)),
+        Bidirectional(LSTM(64, return_sequences=True)),
+        # Bidirectionalなので出力ユニット数は64
+        Bidirectional(LSTM(32)),
         Dense(64, activation='relu'),
+        Dropout(0.5),
         Dense(1, activation='sigmoid')
     ])
 
