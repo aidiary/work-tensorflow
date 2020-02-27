@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  jupyter-lab:
+    image: "tensorflow/tensorflow:mytf2"
+    user: root
+    ports:
+      - "8888:8888"
+    working_dir: /root
+    volumes:
+      - ./:/root
+      - ~/.keras:/root/.keras
+    environment:
+      - TF_CPP_MIN_LOG_LEVEL=2
+    # NOT SUPPORT GPUS!!!
+    command: jupyter lab --ip=0.0.0.0 --allow-root
