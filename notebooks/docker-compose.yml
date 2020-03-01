@@ -1,4 +1,4 @@
-version: "3.7"
+version: "2.4"
 services:
   jupyter-lab:
     image: "tensorflow/tensorflow:mytf2"
@@ -11,5 +11,6 @@ services:
       - ~/.keras:/root/.keras
     environment:
       - TF_CPP_MIN_LOG_LEVEL=2
-    # NOT SUPPORT GPUS!!!
+      - NVIDIA_VISIBLE_DEVICES=all
+    runtime: nvidia
     command: jupyter lab --ip=0.0.0.0 --allow-root
