@@ -133,3 +133,7 @@ dmypy.json
 
 notebooks/
 tensorflow_datasets/
+
+.jupyter/
+.keras/
+.local/
