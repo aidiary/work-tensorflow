@@ -1,7 +1,7 @@
 version: "2.4"
 services:
   jupyter-lab:
-    image: "tensorflow/tensorflow:mytf2"
+    image: "f2forest/tensorflow:latest"
     user: root
     ports:
       - "8888:8888"
