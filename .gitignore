@@ -138,3 +138,5 @@ tensorflow_datasets/
 .local/
 .nv/
 .config/
+
+notebooks/Untitled*
