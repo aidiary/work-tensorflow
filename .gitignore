@@ -131,9 +131,10 @@ dmypy.json
 .vscode
 .python_history
 
-notebooks/
 tensorflow_datasets/
 
 .jupyter/
 .keras/
 .local/
+.nv/
+.config/
